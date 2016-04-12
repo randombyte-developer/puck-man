@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Figur
+comment1.params=
+comment1.target=void\ act()
+comment2.params=richtung
+comment2.target=void\ setRichtung(int)
+comment3.params=
+comment3.target=void\ bewegen()
+numComments=4

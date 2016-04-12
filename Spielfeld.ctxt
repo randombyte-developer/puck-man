@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=Spielfeld
+comment1.params=breite\ hoehe\ feldgroesse
+comment1.target=Spielfeld(int,\ int,\ int)
+numComments=2
