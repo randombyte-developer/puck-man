@@ -2,4 +2,10 @@
 comment0.target=Spielfeld
 comment1.params=breite\ hoehe\ feldgroesse
 comment1.target=Spielfeld(int,\ int,\ int)
-numComments=2
+comment2.params=
+comment2.target=void\ mauernBauen()
+comment2.text=\r\n\ Setzt\ W\u00E4nde\ au\u00DFen\ am\ Spielfeld.\r\n
+comment3.params=
+comment3.target=void\ punkteVerteilen()
+comment3.text=\r\n\ Setzt\ Punkte\ auf\ freie\ Spielfelder.\r\n
+numComments=4
