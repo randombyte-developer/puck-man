@@ -6,8 +6,12 @@ public class Spieler extends Figur {
         super("ppl2.png", 10); //Bild und Geschwindigkeit
     }
     
+    public void act() {
+        super.act();
+        drehen(); //Drehen hier, damit sofortige Reaktion auf Nutzereingaben und nicht erst jede 10. act-Methode
+    }
+    
     public void actBewegen() {
-        drehen();
         bewegen();
     }
     
