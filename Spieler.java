@@ -2,25 +2,24 @@ import greenfoot.*;
 
 public class Spieler extends Figur {
     
-    private int geschwindigkeit = 10; //Anzahl act Methoden auf einem Feld, dann erst bewegen
-    private int actAnzahl = 0; //Anzahl schon vergangener act Methoden auf einem Feld
-    
     public Spieler() {
+        super(10);
+        
         setImage("ppl2.png");
         GreenfootImage image = getImage();
         image.scale(30, 30);
         setImage(image);
     }
     
-    public void act() {
-        richtungAendern();
-        actBewegen();
+    public void actBewegen() {
+        drehen();
+        bewegen();
     }
     
     /**
      * Fragt Tastatur ab und ändert dementsprechend die Richtung des Spielers.
      */
-    private void richtungAendern() {
+    private void drehen() {
         if (Greenfoot.isKeyDown("right")) {
             setRichtung(0);
         } else if (Greenfoot.isKeyDown("down")) {
@@ -32,13 +31,5 @@ public class Spieler extends Figur {
         }
     }
     
-    /**
-     * Wird jedes mal in der act()-Methode aufgerufen. Zählt die 'actAnzahl' hoch. Bewegt den Spieler einstprechend der Geschwindigkeit.
-     */
-    private void actBewegen() {
-        if (++actAnzahl >= geschwindigkeit) {
-            bewegen();
-            actAnzahl = 0;
-        }
-    }
+
 }

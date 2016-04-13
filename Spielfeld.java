@@ -37,4 +37,11 @@ public class Spielfeld extends World {
             }
         }
     }
+    
+    /**
+     * Prüft, ob die gegebene Position auf dem Spielfeld ist.
+     */
+    public boolean isPositionInSpielfeld(int x, int y) {
+        return 0 <= x && x < getWidth() && 0 <= y && y < getHeight();
+    }
 }
