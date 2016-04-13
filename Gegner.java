@@ -5,12 +5,7 @@ import java.util.ArrayList;
 public class Gegner extends Figur {
     
     public Gegner() {
-        super(20); //Geschwindigkeit
-        
-        setImage("bluej-icon.png");
-        GreenfootImage image = getImage();
-        image.scale(30, 30);
-        setImage(image);
+        super("bluej-icon.png", 20); //Bild und Geschwindigkeit
     }
     
     public void actBewegen() {
@@ -31,7 +26,7 @@ public class Gegner extends Figur {
         int gegenrichtung = getGegenRichtung();
         for (int richtung = 0; richtung < 4; richtung++) {
             if (richtung == gegenrichtung) {
-                continue;
+                continue; //Nicht rückwärts gegen
             }
             int[] naechstePosition = getNaechstePosition(richtung);
             int x = naechstePosition[0];

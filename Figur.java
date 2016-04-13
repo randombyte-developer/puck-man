@@ -6,7 +6,8 @@ public abstract class Figur extends Actor {
     private int actAnzahl = 0; //Anzahl act Methoden schon auf einem Feld verbracht
     private int richtung = 0; //0 -> rechts, 1 -> unten, 2 -> links, 3 -> oben
     
-    public Figur(int geschwindigkeit) {
+    public Figur(String bild, int geschwindigkeit) {
+        setBild(bild);
         this.geschwindigkeit = geschwindigkeit;
     }
     
@@ -21,6 +22,15 @@ public abstract class Figur extends Actor {
     }
     
     public abstract void actBewegen();
+    
+    /**
+     * Lädt das Bild vom angegebenen Pfad, skaliert es auf Feldgröße und setzt es für diese Figur.
+     */
+    public void setBild(String bildPfad) {
+        GreenfootImage bild = new GreenfootImage(bildPfad);
+        bild.scale(30, 30);
+        setImage(bild);
+    }
     
     /**
      * Dreht die Figur.

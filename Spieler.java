@@ -3,12 +3,7 @@ import greenfoot.*;
 public class Spieler extends Figur {
     
     public Spieler() {
-        super(10);
-        
-        setImage("ppl2.png");
-        GreenfootImage image = getImage();
-        image.scale(30, 30);
-        setImage(image);
+        super("ppl2.png", 10); //Bild und Geschwindigkeit
     }
     
     public void actBewegen() {
