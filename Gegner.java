@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Gegner extends Figur {
     
     public Gegner() {
-        super(20);
+        super(20); //Geschwindigkeit
         
         setImage("bluej-icon.png");
         GreenfootImage image = getImage();

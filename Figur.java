@@ -15,7 +15,7 @@ public abstract class Figur extends Actor {
      */
     public void act() {
         if (++actAnzahl >= geschwindigkeit) {
-            actBewegen();
+            actBewegen(); //Genug act-Methoden gewartet -> einmal bewegen
             actAnzahl = 0;
         }
     }
@@ -44,28 +44,21 @@ public abstract class Figur extends Actor {
      * @return Die Gegenrichtung: 0 -> rechts, 1 -> unten, 2 -> links, 3 -> oben
      */
     public int getGegenRichtung() {
-        int gegenRichtung = richtung + 2;
-        switch (gegenRichtung) {
-            case 4:
-                gegenRichtung = 0;
-                break;
-            case 5:
-                gegenRichtung = 1;
-                break;    
-        }
-        
-        return gegenRichtung;
-    }
-    
-    public Spielfeld getWorld() {
-        return (Spielfeld) super.getWorld();
+        return (richtung + 2) % 4; //Addiert 2 für gegenüberliegende Richtung; modulo 4, um Richtung 4 und 5 zu 0 und 1 zu machen
     }
     
     /**
-     * Bewegt die Figur ein Feld nach vorne, wenn keine Wand im Weg ist.
+     * Um Methoden des Spielfeldes einfach benutzen zu können.
+     */
+    public Spielfeld getWorld() {
+        return getWorldOfType(Spielfeld.class);
+    }
+    
+    /**
+     * Bewegt die Figur ein Feld nach vorne, wenn keine Wand im Weg ist und das nächste Feld innerhalb des Spielfeldes ist.
      */
     protected void bewegen() {
-        if (!isWandVorne()) {
+        if (isRichtungMoeglich(richtung)) {
             move(1);
         }
     }
@@ -97,14 +90,15 @@ public abstract class Figur extends Actor {
     }
     
     /**
-     * Prüft, ob Wand in Bewegungs-Richtung der Figur ist.
+     * Prüft, ob die Figur das Feld in Richtung richtung betreten kann(keine Wand und im Spielfeld).
      */
-    private boolean isWandVorne() {
+    public boolean isRichtungMoeglich(int richtung) {
         int[] naechstePosition = getNaechstePosition(richtung);
         int x = naechstePosition[0];
-        int y = naechstePosition[1]; 
+        int y = naechstePosition[1];
         
-        boolean wandInRichtung = getWorld().getObjectsAt(x, y, Wand.class).size() > 0;
-        return wandInRichtung;
+        boolean keineWand = getWorld().getObjectsAt(x, y, Wand.class).size() == 0;
+        boolean imSpielfeld = getWorld().isPositionInSpielfeld(x, y);
+        return keineWand && imSpielfeld;
     }
 }
