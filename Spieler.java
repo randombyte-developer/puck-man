@@ -3,7 +3,7 @@ import greenfoot.*;
 public class Spieler extends Figur {
     
     public Spieler() {
-        super("ppl2.png", 10); //Bild und Geschwindigkeit
+        super("spieler.png", 10); //Bild und Geschwindigkeit
     }
     
     public void act() {

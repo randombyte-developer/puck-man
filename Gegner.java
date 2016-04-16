@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Gegner extends Figur {
     
     public Gegner() {
-        super("bluej-icon.png", 20); //Bild und Geschwindigkeit
+        super("gegner.png", 20); //Bild und Geschwindigkeit
     }
     
     public void actBewegen() {
