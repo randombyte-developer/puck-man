@@ -1,10 +1,12 @@
 import greenfoot.*;
 
-public class Punkt extends Actor {
+public class Punkt extends SpielfeldObjekt {
+    
     public Punkt() {
-        setImage("punkt.png");
-        GreenfootImage image = getImage();
-        image.scale(30, 30);
-        setImage(image);
+        super("punkt.png");
+    }
+    
+    public void addedToWorld(World welt) {
+        bildSkalieren((int) (welt.getCellSize() * 0.7)); //70% der Feldgröße
     }
 }
