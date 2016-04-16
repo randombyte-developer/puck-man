@@ -1,13 +1,16 @@
 import greenfoot.*;
 
-public abstract class Figur extends Actor {
+/**
+ * Ein bewegliches Objekt mit Bild auf dem Spielfeld. Es hat eine actBewegen() Methode, welche passend zur Geschwingkeit dieses Objekts aufgerufen wird.
+ */
+public abstract class Figur extends SpielfeldObjekt {
     
     private int geschwindigkeit; //Anzahl act Methoden auf einem Feld, dann erst bewegen; je höher der Wert, desto langsamer die Figur
     private int actAnzahl = 0; //Anzahl act Methoden schon auf einem Feld verbracht
     private int richtung = 0; //0 -> rechts, 1 -> unten, 2 -> links, 3 -> oben
     
-    public Figur(String bild, int geschwindigkeit) {
-        setBild(bild);
+    public Figur(String bildPfad, int geschwindigkeit) {
+        super(bildPfad);
         this.geschwindigkeit = geschwindigkeit;
     }
     
@@ -22,15 +25,6 @@ public abstract class Figur extends Actor {
     }
     
     public abstract void actBewegen();
-    
-    /**
-     * Lädt das Bild vom angegebenen Pfad, skaliert es auf Feldgröße und setzt es für diese Figur.
-     */
-    public void setBild(String bildPfad) {
-        GreenfootImage bild = new GreenfootImage(bildPfad);
-        bild.scale(30, 30);
-        setImage(bild);
-    }
     
     /**
      * Dreht die Figur.
