@@ -31,9 +31,9 @@ public class Spielfeld extends World {
                 if (reihe[x].equals("X")) {
                     objekt = new Wand();
                 } else if (reihe[x].equals("S")) {
-                    objekt = new Gegner();
-                } else if (reihe[x].equals("G")) {
                     objekt = new Spieler();
+                } else if (reihe[x].equals("G")) {
+                    objekt = new Gegner();
                 }
                 
                 if (objekt != null) {
