@@ -10,8 +10,9 @@ public abstract class Figur extends SpielfeldObjekt {
     private int richtung = 0; //0 -> rechts, 1 -> unten, 2 -> links, 3 -> oben
     
     public Figur(String bildPfad, int geschwindigkeit) {
-        super(bildPfad);
+        super(bildPfad, true);
         this.geschwindigkeit = geschwindigkeit;
+        setRichtung(3);
     }
     
     /**
@@ -52,18 +53,13 @@ public abstract class Figur extends SpielfeldObjekt {
     }
     
     /**
-     * Um Methoden des Spielfeldes einfach benutzen zu können.
-     */
-    public Spielfeld getWorld() {
-        return getWorldOfType(Spielfeld.class);
-    }
-    
-    /**
      * Bewegt die Figur ein Feld nach vorne, wenn keine Wand im Weg ist und das nächste Feld innerhalb des Spielfeldes ist.
      */
     protected void bewegen() {
         if (isRichtungMoeglich(richtung)) {
-            move(1);
+            int[] pos = getNaechstePosition(richtung);
+            setX(pos[0]);
+            setY(pos[1]);
         }
     }
     
@@ -75,6 +71,7 @@ public abstract class Figur extends SpielfeldObjekt {
     public int[] getNaechstePosition(int richtung) {
         int x = getX();
         int y = getY();
+        
         switch (richtung) {
             case 0:
                 x++;

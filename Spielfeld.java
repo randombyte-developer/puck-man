@@ -1,19 +1,38 @@
 import greenfoot.*;
 
 public class Spielfeld extends World {
-
+    
+    private int feldgroesse;
+    private int breite;
+    private int hoehe;
+    
     public Spielfeld(int breite, int hoehe, int feldgroesse) {
         super(breite, hoehe, feldgroesse);
         
-        Greenfoot.setSpeed(50);
         mauernBauen();
-        setPaintOrder(Spieler.class, Gegner.class, Punkt.class);
     }
     
     public Spielfeld(int breite, int hoehe, int feldgroesse, String mapString) {
-        super(breite, hoehe, feldgroesse);
+        super(breite * feldgroesse, hoehe * feldgroesse, 1);
+        
+        this.breite = breite;
+        this.hoehe = hoehe;
+        
+        setPaintOrder(Spieler.class, Gegner.class, Punkt.class);
+        Greenfoot.setSpeed(50);
+        
+        this.feldgroesse = feldgroesse;
+        
         einlesen(mapString);
         punkteVerteilen();
+    }
+    
+    public int getFeldgroesse() {
+        return feldgroesse;
+    }
+    
+    private void objektHinzufuegen(SpielfeldObjekt objekt, int x, int y) {
+        addObject(objekt, x * feldgroesse, y * feldgroesse);
     }
     
     /**
@@ -22,11 +41,11 @@ public class Spielfeld extends World {
     private void einlesen(String mapString) {
         spielfeldLeeren();
         
-        String[] mapReihen = mapString.split(";", getHeight());
+        String[] mapReihen = mapString.split(";", hoehe);
         
-        for (int y = 0; y < getHeight(); y++) {
-            String[] reihe = mapReihen[y].split("", getWidth());
-            for (int x = 0; x < getWidth(); x++) {
+        for (int y = 0; y < hoehe; y++) {
+            String[] reihe = mapReihen[y].split("", breite);
+            for (int x = 0; x < breite; x++) {
                 SpielfeldObjekt objekt = null;
                 if (reihe[x].equals("X")) {
                     objekt = new Wand();
@@ -37,7 +56,7 @@ public class Spielfeld extends World {
                 }
                 
                 if (objekt != null) {
-                    addObject(objekt, x, y); //Zur Welt hinzufügen
+                    objektHinzufuegen(objekt, x, y); //Zur Welt hinzufügen
                 }
             }
         }

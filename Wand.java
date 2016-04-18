@@ -3,10 +3,10 @@ import greenfoot.*;
 public class Wand extends SpielfeldObjekt {
     
     public Wand() {
-        super("brick.jpg");
+        super("brick.jpg", false);
     }
     
     public void addedToWorld(World welt) {
-        bildSkalieren(welt.getCellSize());
+        bildSkalieren(getWorld().getFeldgroesse());
     }  
 }

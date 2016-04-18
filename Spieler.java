@@ -13,6 +13,7 @@ public class Spieler extends Figur {
     
     public void actBewegen() {
         bewegen();
+        gegenerFressen();
     }
     
     /**
@@ -30,5 +31,10 @@ public class Spieler extends Figur {
         }
     }
     
-
+    /**
+     * Entfernt alle Gegener auf dem Feld des Spielers.
+     */
+    private void gegenerFressen() {
+        getWorld().removeObjects(getWorld().getObjectsAt(getX(), getY(), Gegner.class));
+    }
 }

@@ -28,13 +28,8 @@ public class Gegner extends Figur {
             if (richtung == gegenrichtung) {
                 continue; //Nicht rückwärts gegen
             }
-            int[] naechstePosition = getNaechstePosition(richtung);
-            int x = naechstePosition[0];
-            int y = naechstePosition[1];
             
-            boolean keineWand = getWorld().getObjectsAt(x, y, Wand.class).size() == 0;
-            boolean imSpielfeld = getWorld().isPositionInSpielfeld(x, y);
-            if (keineWand && imSpielfeld) { //Richtung möglich
+            if (isRichtungMoeglich(richtung)) { //Richtung möglich
                 moeglicheRichtungen.add(richtung);
             }
         }
