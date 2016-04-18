@@ -26,7 +26,7 @@ public class Spielfeld extends World {
         
         for (int y = 0; y < getHeight(); y++) {
             String[] reihe = mapReihen[y].split("", getWidth());
-            for (int x = 0; x < getWidth() - 1; x++) {
+            for (int x = 0; x < getWidth(); x++) {
                 SpielfeldObjekt objekt = null;
                 if (reihe[x].equals("X")) {
                     objekt = new Wand();
