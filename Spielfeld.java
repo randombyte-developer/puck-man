@@ -10,6 +10,46 @@ public class Spielfeld extends World {
         setPaintOrder(Spieler.class, Gegner.class, Punkt.class);
     }
     
+    public Spielfeld(int breite, int hoehe, int feldgroesse, String mapString) {
+        super(breite, hoehe, feldgroesse);
+        einlesen(mapString);
+        punkteVerteilen();
+    }
+    
+    /**
+     * Liest den mapString ein und "baut" das Spielfeld auf.
+     */
+    private void einlesen(String mapString) {
+        spielfeldLeeren();
+        
+        String[] mapReihen = mapString.split(";", getHeight());
+        
+        for (int y = 0; y < getHeight(); y++) {
+            String[] reihe = mapReihen[y].split("", getWidth());
+            for (int x = 0; x < getWidth() - 1; x++) {
+                SpielfeldObjekt objekt = null;
+                if (reihe[x].equals("X")) {
+                    objekt = new Wand();
+                } else if (reihe[x].equals("S")) {
+                    objekt = new Gegner();
+                } else if (reihe[x].equals("G")) {
+                    objekt = new Spieler();
+                }
+                
+                if (objekt != null) {
+                    addObject(objekt, x, y); //Zur Welt hinzufügen
+                }
+            }
+        }
+    }
+    
+    /**
+     * Entfernt alle Objekte auf dem Spielfeld.
+     */
+    private void spielfeldLeeren() {
+        removeObjects(getObjects(null));
+    }
+    
     /**
      * Setzt Wände außen am Spielfeld.
      */

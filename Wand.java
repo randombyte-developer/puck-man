@@ -1,15 +1,12 @@
 import greenfoot.*;
 
-public class Wand extends Actor {
+public class Wand extends SpielfeldObjekt {
     
     public Wand() {
-        setImage("brick.jpg");
-        GreenfootImage image = getImage();
-        image.scale(30, 30);
-        setImage(image);
+        super("brick.jpg");
     }
     
-    public void act() {
-        
-    }    
+    public void addedToWorld(World welt) {
+        bildSkalieren(welt.getCellSize());
+    }  
 }
