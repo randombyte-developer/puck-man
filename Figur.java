@@ -71,6 +71,7 @@ public abstract class Figur extends SpielfeldObjekt {
     public int[] getNaechstePosition(int richtung) {
         int x = getX();
         int y = getY();
+        int feldgroesse = getWorld().getFeldgroesse();
         
         switch (richtung) {
             case 0:
@@ -98,7 +99,7 @@ public abstract class Figur extends SpielfeldObjekt {
         int x = naechstePosition[0];
         int y = naechstePosition[1];
         
-        boolean keineWand = getWorld().getObjectsAt(x, y, Wand.class).size() == 0;
+        boolean keineWand = getWorld().getObjekteAuf(x, y, Wand.class).size() == 0;
         boolean imSpielfeld = getWorld().isPositionInSpielfeld(x, y);
         return keineWand && imSpielfeld;
     }

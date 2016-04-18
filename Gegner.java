@@ -41,7 +41,6 @@ public class Gegner extends Figur {
      * Sammelt alle Punkte am Platz ein.
      */
     private void punktEinsammeln() {
-        List<Punkt> punkte = getWorld().getObjectsAt(getX(), getY(), Punkt.class);
-        getWorld().removeObjects(punkte);
+        removeTouching(Punkt.class);
     }
 }

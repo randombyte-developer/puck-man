@@ -1,4 +1,5 @@
 import greenfoot.*;
+import java.util.List;
 
 public class Spielfeld extends World {
     
@@ -6,37 +7,40 @@ public class Spielfeld extends World {
     private int breite;
     private int hoehe;
     
-    public Spielfeld(int breite, int hoehe, int feldgroesse) {
-        super(breite, hoehe, feldgroesse);
-        
-        mauernBauen();
-    }
-    
     public Spielfeld(int breite, int hoehe, int feldgroesse, String mapString) {
         super(breite * feldgroesse, hoehe * feldgroesse, 1);
         
+        this.feldgroesse = feldgroesse;
         this.breite = breite;
         this.hoehe = hoehe;
         
         setPaintOrder(Spieler.class, Gegner.class, Punkt.class);
         Greenfoot.setSpeed(50);
-        
-        this.feldgroesse = feldgroesse;
-        
+
         einlesen(mapString);
-        punkteVerteilen();
     }
     
     public int getFeldgroesse() {
         return feldgroesse;
     }
     
-    private void objektHinzufuegen(SpielfeldObjekt objekt, int x, int y) {
-        addObject(objekt, x * feldgroesse, y * feldgroesse);
+    /**
+     * Fügt das gegebene SpielfeldObjekt an der gegebenen Position ein.
+     */
+    public void objektHinzufuegen(SpielfeldObjekt objekt, int x, int y) {
+        addObject(objekt, 0, 0);
+        objekt.setPos(x, y); //Position korrigieren
     }
     
     /**
      * Liest den mapString ein und "baut" das Spielfeld auf.
+     * O -> Punkt, X -> Wand, S -> Spieler, G -> Gegner
+     * Beispiel:
+     * XXXXX
+     * XOOGX
+     * XOXXX
+     * XOSOX
+     * XXXXX
      */
     private void einlesen(String mapString) {
         spielfeldLeeren();
@@ -46,12 +50,15 @@ public class Spielfeld extends World {
         for (int y = 0; y < hoehe; y++) {
             String[] reihe = mapReihen[y].split("", breite);
             for (int x = 0; x < breite; x++) {
+                String feldBuchstabe = reihe[x];
                 SpielfeldObjekt objekt = null;
-                if (reihe[x].equals("X")) {
+                if (feldBuchstabe.equals("O")) {
+                    objekt = new Punkt();
+                } else if (feldBuchstabe.equals("X")) {
                     objekt = new Wand();
-                } else if (reihe[x].equals("S")) {
+                } else if (feldBuchstabe.equals("S")) {
                     objekt = new Spieler();
-                } else if (reihe[x].equals("G")) {
+                } else if (feldBuchstabe.equals("G")) {
                     objekt = new Gegner();
                 }
                 
@@ -70,37 +77,16 @@ public class Spielfeld extends World {
     }
     
     /**
-     * Setzt Wände außen am Spielfeld.
+     * Siehe World#getObjectsAt(int, int, Class).
      */
-    private void mauernBauen() {
-        for (int x = 0; x < getWidth(); x++) {
-            addObject(new Wand(), x, 0);
-            addObject(new Wand(), x, getHeight());
-        }
-        for (int y = 0; y < getHeight(); y++) {
-            addObject(new Wand(), 0, y);
-            addObject(new Wand(), getWidth(), y);
-        }
-    }
-    
-    /**
-     * Setzt Punkte auf freie Spielfelder.
-     */
-    protected void punkteVerteilen() {
-        for (int x = 0; x < getWidth(); x++) {
-            for (int y = 0; y < getHeight(); y++) {
-                boolean keinObjektAufFeld = getObjectsAt(x, y, null).size() == 0;
-                if (keinObjektAufFeld) {
-                    addObject(new Punkt(), x, y);
-                }
-            }
-        }
+    public <T> List<T> getObjekteAuf(int x, int y, Class<T> clazz) {
+        return getObjectsAt(x * feldgroesse, y * feldgroesse, clazz);
     }
     
     /**
      * Prüft, ob die gegebene Position auf dem Spielfeld ist.
      */
     public boolean isPositionInSpielfeld(int x, int y) {
-        return 0 <= x && x < getWidth() && 0 <= y && y < getHeight();
+        return 0 <= x && x < breite && 0 <= y && y < hoehe;
     }
 }

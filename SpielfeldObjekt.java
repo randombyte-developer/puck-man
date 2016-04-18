@@ -1,7 +1,7 @@
 import greenfoot.*;
 
 /**
- * Ein unbewegliches Objekt mit Bild auf einem Spielfeld
+ * Ein unbewegliches Objekt mit Bild auf einem Spielfeld.
  */
 public class SpielfeldObjekt extends Actor {
     
@@ -21,30 +21,37 @@ public class SpielfeldObjekt extends Actor {
         }
     }
     
-    /**
-     * Wir dvon Greenfoot aufgerufen.
-     */
-    public void addedToWorld(World welt) {
-        x = getWorld().getFeldgroesse() / super.getX();
-        y = getWorld().getFeldgroesse() / super.getY();
-    }
-    
     public int getX() {
         return x;
     }
     
+    public int getRealX() {
+        return super.getX();
+    }
+    
     public void setX(int x) {
-        this.x = x * getWorld().getFeldgroesse();
-        setLocation(x, super.getY());
+        this.x = x;
+        int realX = x * getWorld().getFeldgroesse() + getWorld().getFeldgroesse() / 2;
+        setLocation(realX, getRealY());
     }
     
     public int getY() {
         return y;
     }
     
+    public int getRealY() {
+        return super.getY();
+    }
+    
     public void setY(int y) {
-        this.y = y * getWorld().getFeldgroesse();
-        setLocation(super.getX(), y);
+        this.y = y;
+        int realY = y * getWorld().getFeldgroesse() + getWorld().getFeldgroesse() / 2;
+        setLocation(getRealX(), realY);
+    }
+    
+    public void setPos(int x, int y) {
+        setX(x);
+        setY(y);
     }
     
     /**

@@ -35,6 +35,6 @@ public class Spieler extends Figur {
      * Entfernt alle Gegener auf dem Feld des Spielers.
      */
     private void gegenerFressen() {
-        getWorld().removeObjects(getWorld().getObjectsAt(getX(), getY(), Gegner.class));
+        removeTouching(Gegner.class);
     }
 }
