@@ -3,33 +3,13 @@ import java.util.List;
 
 public class Spielfeld extends World {
     
-    private int feldgroesse;
-    private int breite;
-    private int hoehe;
-    
     public Spielfeld(int breite, int hoehe, int feldgroesse, String mapString) {
-        super(breite * feldgroesse, hoehe * feldgroesse, 1);
-        
-        this.feldgroesse = feldgroesse;
-        this.breite = breite;
-        this.hoehe = hoehe;
+        super(breite, hoehe, feldgroesse);
         
         setPaintOrder(Spieler.class, Gegner.class, Punkt.class);
         Greenfoot.setSpeed(50);
 
         einlesen(mapString);
-    }
-    
-    public int getFeldgroesse() {
-        return feldgroesse;
-    }
-    
-    /**
-     * Fügt das gegebene SpielfeldObjekt an der gegebenen Position ein.
-     */
-    public void objektHinzufuegen(Figur objekt, int x, int y) {
-        addObject(objekt, 0, 0);
-        objekt.setPos(x, y); //Position korrigieren
     }
     
     /**
@@ -45,11 +25,11 @@ public class Spielfeld extends World {
     private void einlesen(String mapString) {
         spielfeldLeeren();
         
-        String[] mapReihen = mapString.split(";", hoehe);
+        String[] mapReihen = mapString.split(";", getHeight());
         
-        for (int y = 0; y < hoehe; y++) {
-            String[] reihe = mapReihen[y].split("", breite);
-            for (int x = 0; x < breite; x++) {
+        for (int y = 0; y < getHeight(); y++) {
+            String[] reihe = mapReihen[y].split("", getWidth());
+            for (int x = 0; x < getWidth(); x++) {
                 String feldBuchstabe = reihe[x];
                 Figur objekt = null;
                 if (feldBuchstabe.equals("O")) {
@@ -63,7 +43,7 @@ public class Spielfeld extends World {
                 }
                 
                 if (objekt != null) {
-                    objektHinzufuegen(objekt, x, y); //Zur Welt hinzufügen
+                    addObject(objekt, x, y); //Zur Welt hinzufügen
                 }
             }
         }
@@ -77,16 +57,9 @@ public class Spielfeld extends World {
     }
     
     /**
-     * Siehe World#getObjectsAt(int, int, Class).
-     */
-    public <T> List<T> getObjekteAuf(int x, int y, Class<T> clazz) {
-        return getObjectsAt(x * feldgroesse, y * feldgroesse, clazz);
-    }
-    
-    /**
      * Prüft, ob die gegebene Position auf dem Spielfeld ist.
      */
     public boolean isPositionInSpielfeld(int x, int y) {
-        return 0 <= x && x < breite && 0 <= y && y < hoehe;
+        return 0 <= x && x < getWidth() && 0 <= y && y < getHeight();
     }
 }

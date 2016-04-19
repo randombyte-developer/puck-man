@@ -6,11 +6,6 @@ import java.lang.Math;
  */
 public class Figur extends Actor {
     
-    private static final int ANIMATION_FELD_PRO_ACT = 5;
-    
-    private int x = 0;
-    private int y = 0;
-    
     private int geschwindigkeit; //Anzahl act Methoden auf einem Feld, dann erst bewegen; je höher der Wert, desto langsamer die Figur; nur jede n-te act-Methode bewegen; Wert kleiner als 0 -> unbewegliche Figur
     private int actAnzahl = 0; //Anzahl act Methoden schon auf einem Feld verbracht
     private int richtung = 0; //0 -> rechts, 1 -> unten, 2 -> links, 3 -> oben
@@ -41,76 +36,16 @@ public class Figur extends Actor {
      */
     public void act() {
         if (geschwindigkeit < 0) return;
-        System.out.println(actAnzahl + ". act von " + geschwindigkeit + " acts");
         if (++actAnzahl >= geschwindigkeit) {
             actBewegen(); //Genug act-Methoden gewartet -> einmal bewegen
             actAnzahl = 0;
         }
-        
-        double a = getWorld().getFeldgroesse() / (double) geschwindigkeit;
-        int m = (int) a;
-        System.out.println(m + " Pixel bewegen; genau: " + a);
-        move(2);
     }
     
     /**
      * Wird nur einmal in 'geschwindigkeit'-act-Methoden aufgerufen. Die anderen acts dazwischen werden übersprungen.
      */
     public void actBewegen() {}
-    
-    /**
-     * @return Die X-Koordinate auf ganze (Fake-)Felder bezogen.
-     */
-    public int getX() {
-        return x;
-    }
-    
-    /**
-     * @return Die wirkliche X-Koordinate der Figur auf dem Spielfeld
-     */
-    public int getRealX() {
-        return super.getX();
-    }
-    
-    /**
-     * Setzt die Figur mit Animation auf die gegebene X-Koordinate.
-     */
-    public void setX(int x) {
-        this.x = x;
-        int realX = x * getWorld().getFeldgroesse() + getWorld().getFeldgroesse() / 2;
-        setLocation(realX, getRealY());
-    }
-    
-    /**
-     * @return Die Y-Koordinate auf die ganzen, großen (Fake-)Felder bezogen.
-     */
-    public int getY() {
-        return y;
-    }
-    
-     /**
-     * @return Die wirkliche Y-Koordinate der Figur auf dem Spielfeld
-     */
-    public int getRealY() {
-        return super.getY();
-    }
-    
-    /**
-     * Setzt die Figur mit Animation auf die gegebene Y-Koordinate.
-     */
-    public void setY(int y) {
-        this.y = y;
-        int realY = y * getWorld().getFeldgroesse() + getWorld().getFeldgroesse() / 2;
-        setLocation(getRealX(), realY);
-    }
-    
-    /**
-     * Setzt die Figur mit Animation auf die gegebenen Koordinaten.
-     */
-    public void setPos(int x, int y) {
-        setX(x);
-        setY(y);
-    }
     
     /**
      * Skaliert das Bild dieses SpielfeldObjekts auf die angegebene Größe.
@@ -159,7 +94,7 @@ public class Figur extends Actor {
     protected void bewegen() {
         if (isRichtungMoeglich(richtung)) {
             int[] pos = getNaechstePosition(richtung);
-            setPos(pos[0], pos[1]);
+            setLocation(pos[0], pos[1]);
         }
     }
     
@@ -171,7 +106,6 @@ public class Figur extends Actor {
     public int[] getNaechstePosition(int richtung) {
         int x = getX();
         int y = getY();
-        int feldgroesse = getWorld().getFeldgroesse();
         
         switch (richtung) {
             case 0:
@@ -199,7 +133,7 @@ public class Figur extends Actor {
         int x = naechstePosition[0];
         int y = naechstePosition[1];
         
-        boolean keineWand = getWorld().getObjekteAuf(x, y, Wand.class).size() == 0;
+        boolean keineWand = getWorld().getObjectsAt(x, y, Wand.class).size() == 0;
         boolean imSpielfeld = getWorld().isPositionInSpielfeld(x, y);
         return keineWand && imSpielfeld;
     }

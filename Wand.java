@@ -7,6 +7,6 @@ public class Wand extends Figur {
     }
     
     public void addedToWorld(World welt) {
-        bildSkalieren(getWorld().getFeldgroesse());
+        bildSkalieren(getWorld().getCellSize());
     }  
 }
