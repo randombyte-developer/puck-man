@@ -1,9 +1,12 @@
 import greenfoot.*;
+import java.lang.Math;
 
 /**
  * Ein bewegliches Objekt mit Bild auf dem Spielfeld. Es hat eine actBewegen() Methode, welche passend zur Geschwingkeit dieses Objekts aufgerufen wird.
  */
 public class Figur extends Actor {
+    
+    private static final int ANIMATION_FELD_PRO_ACT = 5;
     
     private int x = 0;
     private int y = 0;
@@ -38,10 +41,16 @@ public class Figur extends Actor {
      */
     public void act() {
         if (geschwindigkeit < 0) return;
+        System.out.println(actAnzahl + ". act von " + geschwindigkeit + " acts");
         if (++actAnzahl >= geschwindigkeit) {
             actBewegen(); //Genug act-Methoden gewartet -> einmal bewegen
             actAnzahl = 0;
         }
+        
+        double a = getWorld().getFeldgroesse() / (double) geschwindigkeit;
+        int m = (int) a;
+        System.out.println(m + " Pixel bewegen; genau: " + a);
+        move(2);
     }
     
     /**
@@ -49,34 +58,55 @@ public class Figur extends Actor {
      */
     public void actBewegen() {}
     
-        public int getX() {
+    /**
+     * @return Die X-Koordinate auf ganze (Fake-)Felder bezogen.
+     */
+    public int getX() {
         return x;
     }
     
+    /**
+     * @return Die wirkliche X-Koordinate der Figur auf dem Spielfeld
+     */
     public int getRealX() {
         return super.getX();
     }
     
+    /**
+     * Setzt die Figur mit Animation auf die gegebene X-Koordinate.
+     */
     public void setX(int x) {
         this.x = x;
         int realX = x * getWorld().getFeldgroesse() + getWorld().getFeldgroesse() / 2;
         setLocation(realX, getRealY());
     }
     
+    /**
+     * @return Die Y-Koordinate auf die ganzen, großen (Fake-)Felder bezogen.
+     */
     public int getY() {
         return y;
     }
     
+     /**
+     * @return Die wirkliche Y-Koordinate der Figur auf dem Spielfeld
+     */
     public int getRealY() {
         return super.getY();
     }
     
+    /**
+     * Setzt die Figur mit Animation auf die gegebene Y-Koordinate.
+     */
     public void setY(int y) {
         this.y = y;
         int realY = y * getWorld().getFeldgroesse() + getWorld().getFeldgroesse() / 2;
         setLocation(getRealX(), realY);
     }
     
+    /**
+     * Setzt die Figur mit Animation auf die gegebenen Koordinaten.
+     */
     public void setPos(int x, int y) {
         setX(x);
         setY(y);
@@ -129,8 +159,7 @@ public class Figur extends Actor {
     protected void bewegen() {
         if (isRichtungMoeglich(richtung)) {
             int[] pos = getNaechstePosition(richtung);
-            setX(pos[0]);
-            setY(pos[1]);
+            setPos(pos[0], pos[1]);
         }
     }
     
