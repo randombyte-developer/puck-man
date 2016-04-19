@@ -3,29 +3,100 @@ import greenfoot.*;
 /**
  * Ein bewegliches Objekt mit Bild auf dem Spielfeld. Es hat eine actBewegen() Methode, welche passend zur Geschwingkeit dieses Objekts aufgerufen wird.
  */
-public abstract class Figur extends SpielfeldObjekt {
+public class Figur extends Actor {
     
-    private int geschwindigkeit; //Anzahl act Methoden auf einem Feld, dann erst bewegen; je höher der Wert, desto langsamer die Figur
+    private int x = 0;
+    private int y = 0;
+    
+    private int geschwindigkeit; //Anzahl act Methoden auf einem Feld, dann erst bewegen; je höher der Wert, desto langsamer die Figur; nur jede n-te act-Methode bewegen; Wert kleiner als 0 -> unbewegliche Figur
     private int actAnzahl = 0; //Anzahl act Methoden schon auf einem Feld verbracht
     private int richtung = 0; //0 -> rechts, 1 -> unten, 2 -> links, 3 -> oben
     
+    /**
+     * @bildPfad Der Pfad zu dem Bild, das dieses Objekt anzeigen soll
+     * @geschwindigkeit Siehe oben
+     */
     public Figur(String bildPfad, int geschwindigkeit) {
-        super(bildPfad, true);
         this.geschwindigkeit = geschwindigkeit;
-        setRichtung(3);
+        setRichtung(3); //Nach oben gucken
+        
+        GreenfootImage bild = new GreenfootImage(bildPfad);
+        bild.rotate(90);
+        setImage(bild);
+    }
+    
+    /**
+     * Konstruktor für unbewegliche Objekte.
+     * @bildPfad Siehe oben
+     */
+    public Figur(String bildPfad) {
+        this(bildPfad, -1);
     }
     
     /**
      * Zählt die 'actAnzahl' hoch. Ruft 'actBewegen()' der Geschwindigkeit entsprechend auf.
      */
     public void act() {
+        if (geschwindigkeit < 0) return;
         if (++actAnzahl >= geschwindigkeit) {
             actBewegen(); //Genug act-Methoden gewartet -> einmal bewegen
             actAnzahl = 0;
         }
     }
     
-    public abstract void actBewegen();
+    /**
+     * Wird nur einmal in 'geschwindigkeit'-act-Methoden aufgerufen. Die anderen acts dazwischen werden übersprungen.
+     */
+    public void actBewegen() {}
+    
+        public int getX() {
+        return x;
+    }
+    
+    public int getRealX() {
+        return super.getX();
+    }
+    
+    public void setX(int x) {
+        this.x = x;
+        int realX = x * getWorld().getFeldgroesse() + getWorld().getFeldgroesse() / 2;
+        setLocation(realX, getRealY());
+    }
+    
+    public int getY() {
+        return y;
+    }
+    
+    public int getRealY() {
+        return super.getY();
+    }
+    
+    public void setY(int y) {
+        this.y = y;
+        int realY = y * getWorld().getFeldgroesse() + getWorld().getFeldgroesse() / 2;
+        setLocation(getRealX(), realY);
+    }
+    
+    public void setPos(int x, int y) {
+        setX(x);
+        setY(y);
+    }
+    
+    /**
+     * Skaliert das Bild dieses SpielfeldObjekts auf die angegebene Größe.
+     */
+    public void bildSkalieren(int groesse) {
+        GreenfootImage bild = getImage();
+        bild.scale(groesse, groesse);
+        setImage(bild);
+    }
+    
+    /**
+     * Um Methoden des Spielfeldes einfach benutzen zu können.
+     */
+    public Spielfeld getWorld() {
+        return getWorldOfType(Spielfeld.class);
+    }
     
     /**
      * Dreht die Figur.

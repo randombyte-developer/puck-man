@@ -27,7 +27,7 @@ public class Spielfeld extends World {
     /**
      * Fügt das gegebene SpielfeldObjekt an der gegebenen Position ein.
      */
-    public void objektHinzufuegen(SpielfeldObjekt objekt, int x, int y) {
+    public void objektHinzufuegen(Figur objekt, int x, int y) {
         addObject(objekt, 0, 0);
         objekt.setPos(x, y); //Position korrigieren
     }
@@ -51,7 +51,7 @@ public class Spielfeld extends World {
             String[] reihe = mapReihen[y].split("", breite);
             for (int x = 0; x < breite; x++) {
                 String feldBuchstabe = reihe[x];
-                SpielfeldObjekt objekt = null;
+                Figur objekt = null;
                 if (feldBuchstabe.equals("O")) {
                     objekt = new Punkt();
                 } else if (feldBuchstabe.equals("X")) {

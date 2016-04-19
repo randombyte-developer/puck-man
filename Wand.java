@@ -1,9 +1,9 @@
 import greenfoot.*;
 
-public class Wand extends SpielfeldObjekt {
+public class Wand extends Figur {
     
     public Wand() {
-        super("brick.jpg", false);
+        super("brick.jpg", -1);
     }
     
     public void addedToWorld(World welt) {
