@@ -30,7 +30,7 @@ public class OffsetSpielfeld extends Spielfeld {
      * Methode überschreiben, damit Offset beachtet wird.
      */
     public void addObject(Actor actor, int x, int y) {
-        super.addObject(actor, x + xOffset, y + yOffset);
+        super.addObject(actor, x + (xOffset > 0 ? xOffset : 0), y + (yOffset > 0 ? yOffset : 0));
     }
     
     /**
