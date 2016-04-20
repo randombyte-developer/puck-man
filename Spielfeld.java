@@ -1,7 +1,10 @@
 import greenfoot.*;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Spielfeld extends World {
+    
+    private long acts = 0;
     
     public Spielfeld(int breite, int hoehe, int feldgroesse, String mapString) {
         super(breite, hoehe, feldgroesse);
@@ -48,6 +51,31 @@ public class Spielfeld extends World {
             }
         }
     }
+    
+    public void act() {
+        if (Greenfoot.getRandomNumber(100) == 42) {
+            spawnPowerUp();
+        }
+    }
+    
+    private void spawnPowerUp() {
+        
+    }
+    
+    /**
+     * Sucht nach dem gegebenen Objekttyp auf dem Spielfeld.
+     * @clazz Objekttyp, nach dem gesucht werden soll; null, wenn kein Objekt auf dem Feld sein darf
+     * @return Positionen, auf denen der gegebene Objekttyp vorhanden ist
+     */
+    // private <T> List<Position> getObjekte(Class<T> clazz) {
+        // List<Position> positionen = new ArrayList<Position>();
+        // for
+            // y ->
+            // clazz == obj(x, y)
+            // list.add
+            
+        // return list
+    // }
     
     /**
      * Entfernt alle Objekte auf dem Spielfeld.

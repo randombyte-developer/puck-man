@@ -1,7 +1,7 @@
 import greenfoot.*;
 
-public class Map2 extends Spielfeld {
-    public Map2() {
+public class Map1 extends Spielfeld {
+    public Map1() {
         super(30, 20, 38,
             "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX;" +
             "XOOOOOOOOOOOOOOOOOOOOOOOOOOOOX;" +

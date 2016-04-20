@@ -6,6 +6,7 @@ import java.lang.Math;
  */
 public class Figur extends Actor {
     
+    private double prozentZellenGroesse = -1; //-1, wenn Bild nicht skaliert werden soll
     private int geschwindigkeit; //Anzahl act Methoden auf einem Feld, dann erst bewegen; je höher der Wert, desto langsamer die Figur; nur jede n-te act-Methode bewegen; Wert kleiner als 0 -> unbewegliche Figur
     private int actAnzahl = 0; //Anzahl act Methoden schon auf einem Feld verbracht
     private int richtung = 0; //0 -> rechts, 1 -> unten, 2 -> links, 3 -> oben
@@ -29,6 +30,24 @@ public class Figur extends Actor {
      */
     public Figur(String bildPfad) {
         this(bildPfad, -1);
+    }
+    
+    /**
+     * Konstruktor für unbewegliche Objekte.
+     * @bildPfad Siehe oben
+     * @prozentZellenGroesse 
+     */
+    public Figur(String bildPfad, double prozentZellenGroesse) {
+        this(bildPfad, -1);
+        this.prozentZellenGroesse = prozentZellenGroesse;
+    }
+    
+    /**
+     * Skaliert das Bild der Figur automatisch, wenn sie zu einer Welt hinzugefügt wird.
+     */
+    public void addedToWorld(World welt) {
+        if (prozentZellenGroesse  < 0)return;
+        bildSkalieren((int) (welt.getCellSize() * prozentZellenGroesse));
     }
     
     /**
