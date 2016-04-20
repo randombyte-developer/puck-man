@@ -46,7 +46,7 @@ public class Figur extends Actor {
      * Skaliert das Bild der Figur automatisch, wenn sie zu einer Welt hinzugefügt wird.
      */
     public void addedToWorld(World welt) {
-        if (prozentZellenGroesse  < 0)return;
+        if (prozentZellenGroesse  < 0) return;
         bildSkalieren((int) (welt.getCellSize() * prozentZellenGroesse));
     }
     

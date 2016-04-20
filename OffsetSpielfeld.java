@@ -3,11 +3,11 @@ import java.lang.Math;
 
 public class OffsetSpielfeld extends Spielfeld {
     
-    private final int xOffset; //Positiv, wenn eine Reihe oben hinzugefügt, negativ, wenn unten
-    private final int yOffset; //Positiv, wenn eine Spalte links hinzugefügt, negativ, wenn rechts
+    private final int xOffset; //Positiv, wenn eine Spalte links hinzugefügt, negativ, wenn rechts
+    private final int yOffset; //Positiv, wenn eine Reihe oben hinzugefügt, negativ, wenn unten
     
-    public OffsetSpielfeld(int breite, int hoehe, int feldgroesse, String mapString, int xOffset, int yOffset) {
-        super(breite + Math.abs(xOffset), hoehe + Math.abs(yOffset), feldgroesse, mapString);
+    public OffsetSpielfeld(int breite, int hoehe, int feldgroesse, int xOffset, int yOffset) {
+        super(breite + Math.abs(xOffset), hoehe + Math.abs(yOffset), feldgroesse);
         this.xOffset = xOffset;
         this.yOffset = yOffset;
     }

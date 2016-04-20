@@ -6,13 +6,11 @@ public class Spielfeld extends World {
     
     private long acts = 0;
     
-    public Spielfeld(int breite, int hoehe, int feldgroesse, String mapString) {
-        super(breite, hoehe, feldgroesse);
+    public Spielfeld(int breite, int hoehe, int feldgroesse) {
+        super(breite, hoehe, feldgroesse, false); //false -> nicht 'bounded'
         
         setPaintOrder(Spieler.class, Gegner.class, Punkt.class);
         Greenfoot.setSpeed(50);
-
-        einlesen(mapString);
     }
     
     /**
@@ -25,7 +23,7 @@ public class Spielfeld extends World {
      * XOSOX
      * XXXXX
      */
-    private void einlesen(String mapString) {
+    protected void einlesen(String mapString) {
         spielfeldLeeren();
         
         String[] mapReihen = mapString.split(";", getHeight());

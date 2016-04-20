@@ -6,6 +6,7 @@ import greenfoot.*;
 public class StatusInfoSpielfeld extends OffsetSpielfeld {
     
     public StatusInfoSpielfeld(int breite, int hoehe, int feldgroesse, String mapString) {
-        super(breite, hoehe, feldgroesse, mapString, 1, 0); //Eine Reihe oben hinzugefügt
+        super(breite, hoehe, feldgroesse, 0, -1); //Eine Reihe oben hinzugefügt
+        einlesen(mapString);
     }
 }

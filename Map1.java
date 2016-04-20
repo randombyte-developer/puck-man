@@ -1,27 +1,15 @@
-import greenfoot.*;
-
-public class Map1 extends Spielfeld {
+public class Map1 extends StatusInfoSpielfeld {
     public Map1() {
-        super(30, 20, 38,
-            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX;" +
-            "XOOOOOOOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XOXXXXXOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XOXOOOOOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XOXOXOOOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XOOOOOOOOOOOXXXXXOOOOOOOOOOOOX;" +
-            "XOXOOOOOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XOXXXXOOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XOOOOOOOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XOOOOOOOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XOOOOOOOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XOOOOOOOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XOOOOOOOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XOOOOOOOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XOOOOOOOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XOOOOOOOOOOOOOOOOOOOOOOOSOOOOX;" +
-            "XOOOOOOOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XOOOOOOOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XOOOOOOOOOOOOOOOOOOOOOOOOOOOOX;" +
-            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        super(7, 10, 38,
+            "XXXXXXX;" +
+            "XOOOOOX;" +
+            "XOXOXOX;" +
+            "XOXOOOX;" +
+            "XOXOXXX;" +
+            "XOXGOOX;" +
+            "XOXOXOX;" +
+            "XOOOXOX;" +
+            "XXXOOOX;" +
+            "XXXXXXX");
     }
 }
