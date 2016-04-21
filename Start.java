@@ -14,7 +14,7 @@ public class Start extends World {
         hintergrund.fill();
         setBackground(hintergrund);
         
-        addObject(new TextButton("Start", 70, Color.WHITE, Color.YELLOW, new KlickCallback() {
+        addObject(new TextButton("Start", 70, Color.WHITE, Color.YELLOW, new TextButton.KlickCallback() {
             public void klick() {
                 Greenfoot.setWorld(new LevelAuswahl());
             }

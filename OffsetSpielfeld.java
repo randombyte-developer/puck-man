@@ -34,6 +34,13 @@ public class OffsetSpielfeld extends Spielfeld {
     }
     
     /**
+     * Fügt einen Actor wie super.addObject(...) hinzu, ohne den Offset zu beachten.
+     */
+    public void addObjectOhneOffset(Actor actor, int x, int y) {
+        super.addObject(actor, x, y);
+    }
+    
+    /**
      * Methode überschreiben, damit Offset beachtet wird.
      */
     public int getWidth() {

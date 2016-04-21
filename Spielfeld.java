@@ -14,7 +14,7 @@ public class Spielfeld extends World {
     }
     
     /**
-     * Liest den mapString ein und "baut" das Spielfeld auf.
+     * Liest den mapString ein und "baut" das Spielfeld auf. Löscht alles auf dem Spielfeld!
      * O -> Punkt, X -> Wand, S -> Spieler, G -> Gegner
      * Beispiel:
      * XXXXX
@@ -59,21 +59,6 @@ public class Spielfeld extends World {
     private void spawnPowerUp() {
         
     }
-    
-    /**
-     * Sucht nach dem gegebenen Objekttyp auf dem Spielfeld.
-     * @clazz Objekttyp, nach dem gesucht werden soll; null, wenn kein Objekt auf dem Feld sein darf
-     * @return Positionen, auf denen der gegebene Objekttyp vorhanden ist
-     */
-    // private <T> List<Position> getObjekte(Class<T> clazz) {
-        // List<Position> positionen = new ArrayList<Position>();
-        // for
-            // y ->
-            // clazz == obj(x, y)
-            // list.add
-            
-        // return list
-    // }
     
     /**
      * Entfernt alle Objekte auf dem Spielfeld.
