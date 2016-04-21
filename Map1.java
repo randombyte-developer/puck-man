@@ -4,7 +4,7 @@ public class Map1 extends StatusInfoSpielfeld {
             "XXXXXXX;" +
             "XOOOOOX;" +
             "XOXOXOX;" +
-            "XOXOOOX;" +
+            "XOXOOSX;" +
             "XOXOXXX;" +
             "XOXGOOX;" +
             "XOXOXOX;" +

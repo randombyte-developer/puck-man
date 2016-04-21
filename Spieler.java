@@ -9,11 +9,12 @@ public class Spieler extends Figur {
     public void act() {
         super.act();
         drehen(); //Drehen hier, damit sofortige Reaktion auf Nutzereingaben und nicht erst jede 10. act-Methode
+        gegnerFressen();
+        powerUpAufnehmen();
     }
     
     public void actBewegen() {
         bewegen();
-        gegenerFressen();
     }
     
     /**
@@ -34,7 +35,14 @@ public class Spieler extends Figur {
     /**
      * Entfernt alle Gegener auf dem Feld des Spielers.
      */
-    private void gegenerFressen() {
+    private void gegnerFressen() {
         removeTouching(Gegner.class);
+    }
+    
+    /**
+     * Nimmt alle PowerUps auf dem Feld des Spielers auf.
+     */
+    private void powerUpAufnehmen() {
+        removeTouching(PowerUp.class);
     }
 }

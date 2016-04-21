@@ -1,4 +1,5 @@
 import greenfoot.*;
+import java.util.List;
 import java.lang.Math;
 
 public class OffsetSpielfeld extends Spielfeld {
@@ -38,6 +39,13 @@ public class OffsetSpielfeld extends Spielfeld {
      */
     public void addObjectOhneOffset(Actor actor, int x, int y) {
         super.addObject(actor, x, y);
+    }
+    
+    /**
+     * Wie super.getObjectsAt(...) unter Beachtung des Offsets.
+     */
+    public <T> List<T> getObjectsAtMitOffset(int x, int y, Class<T> clazz) {
+        return super.getObjectsAt(x + xOffset, y + yOffset, clazz);
     }
     
     /**
