@@ -56,6 +56,11 @@ public class Spielfeld extends World {
         }
     }
 
+    public void act() {
+        if (isGestoppt()) return;
+        gewonnenVerlorenPruefen();
+    }
+    
     /**
      * Verhindert die Ausführung der act Methode.
      */
@@ -84,6 +89,46 @@ public class Spielfeld extends World {
         return getObjects(Punkt.class).size();
     }
 
+    /**
+     * @return Die Anzahl der noch auf dem Spielfeld vorhandenen Gegner
+     */
+    public int getGegnerAufSpielfeld() {
+        return getObjects(Gegner.class).size();
+    }
+    
+    /**
+     * Prüft, ob der Spieler gewonnen oder verloren hat und führt dementsprechend weitere Aktionen aus.
+     */
+    private void gewonnenVerlorenPruefen() {
+        if (getPunkteAufSpielfeld() == 0) { //Gegner haben alle Punkte
+            spielerVerloren();
+        }
+        
+        if (getGegnerAufSpielfeld() == 0) { //Alle Gegner tot
+            spielerGewonnen();
+        }
+    }
+    
+    /**
+     * Zeigt den GameOver-Screen an.
+     */
+    private void spielerVerloren() {
+        setGestoppt(true);
+        showText("Game over!", getWidth() / 2, getHeight() / 2);
+        Greenfoot.delay(3);
+        //gameoverscreen
+    }
+    
+    /**
+     * Zeigt den Gewonnen-Screen an.
+     */
+    private void spielerGewonnen() {
+        setGestoppt(true);
+        showText("Gewonnen!", getWidth() / 2, getHeight() / 2);
+        Greenfoot.delay(3);
+        //gewonnenscreen
+    }
+    
     /**
      * Prüft, ob die gegebene Position auf dem Spielfeld ist.
      */

@@ -3,8 +3,8 @@ public class Map1 extends StatusInfoSpielfeld {
         super(8, 10, 38,
             "XXXXXXXX;" +
             "XOOOOOXX;" +
-            "XOXOXOXX;" +
-            "XOXOOSXX;" +
+            "XOXOXSXX;" +
+            "XOXOOOXX;" +
             "XOXOXXXX;" +
             "XOXGOOXX;" +
             "XOXOXOXX;" +
