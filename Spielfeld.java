@@ -59,6 +59,9 @@ public class Spielfeld extends World {
     public void act() {
         if (isGestoppt()) return;
         gewonnenVerlorenPruefen();
+        if (Greenfoot.isKeyDown("escape")) { //Level abbrechen
+            Greenfoot.setWorld(new LevelAuswahl());
+        }
     }
     
     /**
