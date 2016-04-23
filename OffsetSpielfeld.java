@@ -32,7 +32,8 @@ public class OffsetSpielfeld extends Spielfeld {
      * Methode überschreiben, damit Offset beachtet wird.
      */
     public void addObject(Actor actor, int x, int y) {
-        super.addObject(actor, x + (xOffset > 0 ? xOffset : 0), y + (yOffset > 0 ? yOffset : 0));
+        Position pos = mitOffset(new Position(x, y));
+        super.addObject(actor, pos.getX(), pos.getY());
     }
     
     /**
@@ -46,7 +47,8 @@ public class OffsetSpielfeld extends Spielfeld {
      * Wie super.getObjectsAt(...) unter Beachtung des Offsets.
      */
     public <T> List<T> getObjectsAtMitOffset(int x, int y, Class<T> clazz) {
-        return super.getObjectsAt(x + xOffset, y + yOffset, clazz);
+        Position pos = mitOffset(new Position(x, y));
+        return super.getObjectsAt(pos.getX(), pos.getY(), clazz);
     }
     
     /**
@@ -64,7 +66,7 @@ public class OffsetSpielfeld extends Spielfeld {
     }
     
     /**
-     * Wandelt eine Position um, damit der Offset beachtet wird.
+     * Wandelt eine Position um, damit der Offset beachtet wird. Die Position kann danach direkt mit allen Greenfoot-Methoden benutzt werden.
      */
     public Position mitOffset(Position pos) {
         return new Position(pos.getX() + (xOffset > 0 ? xOffset : 0), pos.getY() + (yOffset > 0 ? yOffset : 0));
@@ -74,7 +76,7 @@ public class OffsetSpielfeld extends Spielfeld {
      * Wandelt eine Position um, damit der Offset nicht beachtet wird.
      */
     public Position ohneOffset(Position pos) {
-        return new Position(pos.getX() - (xOffset > 0 ? xOffset : 0), pos.getY() + (yOffset > 0 ? yOffset : 0));
+        return new Position(pos.getX() - Math.max(0, xOffset), pos.getY() + Math.max(0, yOffset));
     }
     
     /**
@@ -85,7 +87,7 @@ public class OffsetSpielfeld extends Spielfeld {
     }
 
     /**
-     * Sucht nach Positionen, die dem gebenenem Typ entsprechen.
+     * Sucht nach Positionen, die dem gebenenem Typ entsprechen innerhalb des Spielfelds und lässt den Offset außen vor.
      * @clazz Typ des Actors, nach dem gesucht werden soll oder null, wenn nach leeren Felder gesucht werden soll
      * @return Liste mit Positionen, die dem Kriterium entsprechen
      */

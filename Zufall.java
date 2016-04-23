@@ -13,6 +13,9 @@ public class Zufall {
      * @return Ein zufälliges Element der gegebenen Liste
      */
     public static <T> T getZufallsElement(List<T> liste) {
+        if (liste.size() == 0) {
+            System.out.println("Liste hat keine Elemente!");
+        }
         return liste.get(Greenfoot.getRandomNumber(liste.size()));
     }
 }

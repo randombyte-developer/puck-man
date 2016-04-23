@@ -52,7 +52,7 @@ public class StatusInfoSpielfeld extends OffsetSpielfeld {
         if (Zufall.getZufallsBoolean(powerUpVorkommen)) { //Zufälliger Zeitpunkt
             List<Position> leereFelder = leereFelderSuchen();
             if (leereFelder.size() > 0) {
-                Position leeresFeld = leereFelder.get(Greenfoot.getRandomNumber(leereFelder.size()));
+                Position leeresFeld = Zufall.getZufallsElement(leereFelder);
                 spawnPowerUp(PowerUpTyp.getRandomTyp(), leeresFeld.getX(), leeresFeld.getY());
             }
         }
