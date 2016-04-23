@@ -55,7 +55,7 @@ public class Spielfeld extends World {
             }
         }
     }
-    
+
     /**
      * Verhindert die Ausführung der act Methode.
      */
