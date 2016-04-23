@@ -12,21 +12,23 @@ public class LevelAuswahl extends World {
     }
 
     private void levelAuflisten() {
-        List<Spielfeld> maps = new ArrayList<Spielfeld>();
-        maps.add(new Map1());
-        maps.add(new Map2());
+        List<Spielfeld> spielfelder = new ArrayList<Spielfeld>();
+        spielfelder.add(new Map1());
+        spielfelder.add(new Map2());
 
-        for (int x = 0; x < getWidth(); x++) {
-            for (int y = 0; y < getHeight(); y++) {
-            
+        for (int y = 0; y < getHeight(); y++) {
+            for (int x = 0; x < getWidth(); x++) {
+                int nummer = x + y;
+                if (spielfelder.size() - 1 < nummer) { //Keine weiteren Spielfelder mehr zum auflisten da
+                    return;
+                }
+                addObject(new TextButton(String.valueOf(nummer + 1), 70, Color.WHITE, Color.YELLOW, new TextButton.KlickCallback() {
+                    public void klick() {
+                        Greenfoot.setWorld(spielfelder.get(nummer));
+                    }
+                }), x, y);
             }
         }
-
-        addObject(new TextButton("1", 70, Color.WHITE, Color.YELLOW, new TextButton.KlickCallback() {
-                    public void klick() {
-                        Greenfoot.setWorld(new Map1());
-                    }
-                }), 0, 0);
     }
 }
 

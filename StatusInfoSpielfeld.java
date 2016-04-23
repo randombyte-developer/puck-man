@@ -43,7 +43,6 @@ public class StatusInfoSpielfeld extends OffsetSpielfeld {
         return getObjects(Punkt.class).size();
     }
     
-    
     public void act() {
         super.act();
         punkteText.setText(getPunkteAufSpielfeld() + " Punkte");
