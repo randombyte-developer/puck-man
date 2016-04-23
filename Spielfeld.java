@@ -100,33 +100,25 @@ public class Spielfeld extends World {
      * Prüft, ob der Spieler gewonnen oder verloren hat und führt dementsprechend weitere Aktionen aus.
      */
     private void gewonnenVerlorenPruefen() {
-        if (getPunkteAufSpielfeld() == 0) { //Gegner haben alle Punkte
-            spielerVerloren();
+        int punkteAufFeld = getPunkteAufSpielfeld();
+        if (punkteAufFeld == 0) { //Gegner haben alle Punkte
+            endNachrichtZeigen("Game over! Score: " + punkteAufFeld);
         }
         
         if (getGegnerAufSpielfeld() == 0) { //Alle Gegner tot
-            spielerGewonnen();
+            endNachrichtZeigen("Gewonnen! Score: " + punkteAufFeld);
         }
     }
     
     /**
-     * Zeigt den GameOver-Screen an.
+     * Zeigt die gegebene Nachricht, wartet, löscht alle Objekte, wartet nochmal und kehrt dann zur LevelAuswahl zurück.
      */
-    private void spielerVerloren() {
+    private void endNachrichtZeigen(String nachricht) {
         setGestoppt(true);
-        showText("Game over!", getWidth() / 2, getHeight() / 2);
-        Greenfoot.delay(3);
-        //gameoverscreen
-    }
-    
-    /**
-     * Zeigt den Gewonnen-Screen an.
-     */
-    private void spielerGewonnen() {
-        setGestoppt(true);
-        showText("Gewonnen!", getWidth() / 2, getHeight() / 2);
-        Greenfoot.delay(3);
-        //gewonnenscreen
+        showText(nachricht, getWidth() / 2, getHeight() / 2);
+        Greenfoot.delay(60);
+        spielfeldLeeren();
+        Greenfoot.delay(60);
     }
     
     /**
