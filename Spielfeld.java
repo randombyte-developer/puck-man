@@ -27,9 +27,15 @@ public class Spielfeld extends World {
         spielfeldLeeren();
 
         String[] mapReihen = mapString.split(";", getHeight());
-
+        if (mapReihen.length != getHeight()) {
+            System.out.println("Die Anzahl der Reihen von " + mapReihen.length + " Reihen entspricht nicht der Spielfeldhöhe von " + getHeight() + " Reihen!");
+        }
+        
         for (int y = 0; y < getHeight(); y++) {
             String[] reihe = mapReihen[y].split("", getWidth());
+            if (reihe.length != getWidth()) {
+                System.out.println("Die " + y + ". Reihe hat nicht so viele Zeichen wie die Spielfeldbreite von " + getWidth() + " Feldern!");
+            }
             for (int x = 0; x < getWidth(); x++) {
                 String feldBuchstabe = reihe[x];
                 Figur objekt = null;

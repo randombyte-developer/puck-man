@@ -108,6 +108,21 @@ public class Figur extends Actor {
     }
     
     /**
+     * @return Die aktuelle Geschwindigkeit
+     */
+    public int getGeschwindigkeit() {
+        return geschwindigkeit;
+    }
+    
+    /**
+     * @geschwindigkeit Geschwindigkeit, die die Figur haben soll
+     *  Anzahl der act-Methoden, die gewartet wird, bis sich die Figur bewegt, kleiner als 0, wenn sich die Figur nicht bewegt
+     */
+    public void setGeschwindigkeit(int geschwindigkeit) {
+        this.geschwindigkeit = geschwindigkeit;
+    }
+    
+    /**
      * Bewegt die Figur ein Feld nach vorne, wenn keine Wand im Weg ist und das nächste Feld innerhalb des Spielfeldes ist.
      */
     protected void bewegen() {

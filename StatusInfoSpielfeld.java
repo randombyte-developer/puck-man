@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.awt.Color;
 
 /**
- * Zeigt am oberen Spielfeldrand eine Reihe für Statusinformationen(z.B. aktuelles PowerUp) an.
+ * Spielfeld mit einer Reihe oben am Spielfeldrand für Statusinformationen(z.B. aktuelles PowerUp). Spawnt PowerUps.
  */
 public class StatusInfoSpielfeld extends OffsetSpielfeld {
     
     private Text punkteText = new Text("", 30, Color.BLACK, Color.WHITE);
+    private double powerUpVorkommen;
     
-    public StatusInfoSpielfeld(int breite, int hoehe, int feldgroesse, String mapString) {
+    /**
+     * @powerUpVorkommen Zwischen 0 und 1, wie wahrscheinlich es ist, dass in einer act-Methode ein PowerUp gespawnt wird
+     */
+    public StatusInfoSpielfeld(int breite, int hoehe, int feldgroesse, String mapString, double powerUpVorkommen) {
         super(breite, hoehe, feldgroesse, 0, 1); //Eine Reihe oben hinzugefügt
+        this.powerUpVorkommen = powerUpVorkommen;
         einlesen(mapString);
-        addObjectOhneOffset(punkteText, 3, 0);
+        addObjectOhneOffset(punkteText, 1, 0);
     }
     
     /**
@@ -27,7 +32,7 @@ public class StatusInfoSpielfeld extends OffsetSpielfeld {
     public void act() {
         super.act();
         punkteText.setText(getPunkteAufSpielfeld() + " Punkte");
-        if (Greenfoot.getRandomNumber(100) == 42) { //Zufälliger Zeitpunkt
+        if (Greenfoot.getRandomNumber(1000) == powerUpVorkommen * 1000) { //Zufälliger Zeitpunkt
             List<Position> leereFelder = leereFelderSuchen();
             if (leereFelder.size() > 0) {
                 Position leeresFeld = leereFelder.get(Greenfoot.getRandomNumber(leereFelder.size()));

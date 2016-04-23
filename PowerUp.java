@@ -9,6 +9,13 @@ public class PowerUp extends Figur {
         this.typ = typ;
     }
     
+    /**
+     * @return Der PowerUpTyp des PowerUps
+     */
+    public PowerUpTyp getTyp() {
+        return typ;
+    }
+    
     private static String getBildPfadFuerTyp(PowerUpTyp typ) {
         switch (typ) {
             case SPEED: return "bluej-icon.png";
