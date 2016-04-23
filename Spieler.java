@@ -32,14 +32,21 @@ public class Spieler extends Figur {
      * Fragt Tastatur ab und ändert dementsprechend die Richtung des Spielers.
      */
     private void drehen() {
+        int neueRichtung = -1;
         if (Greenfoot.isKeyDown("right")) {
-            setRichtung(0);
+            neueRichtung = 0;
         } else if (Greenfoot.isKeyDown("down")) {
-            setRichtung(1);
+            neueRichtung = 1;
         }  else if (Greenfoot.isKeyDown("left")) {
-            setRichtung(2);
+            neueRichtung = 2;
         } else if (Greenfoot.isKeyDown("up")) {
-            setRichtung(3);
+            neueRichtung = 3;
+        }
+        
+        if (neueRichtung == -1) return; //Keine Richtungsänderung
+        
+        if (isRichtungMoeglich(neueRichtung)) { //Wenn neue Richtung nicht sinnvoll ist und somit der Spieler stehen bleiben würde, nicht drehen
+            setRichtung(neueRichtung);
         }
     }
     
