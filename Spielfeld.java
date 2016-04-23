@@ -119,6 +119,7 @@ public class Spielfeld extends World {
         Greenfoot.delay(60);
         spielfeldLeeren();
         Greenfoot.delay(60);
+        Greenfoot.setWorld(new LevelAuswahl());
     }
     
     /**
