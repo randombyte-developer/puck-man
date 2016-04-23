@@ -83,22 +83,27 @@ public class OffsetSpielfeld extends Spielfeld {
      * @return Liste mit Positionen, wo leere Felder sind
      */
     public List<Position> leereFelderSuchen() {
-        return felderSuchen(null);
+        return felderSuchen(null, false);
     }
 
     /**
      * Sucht nach Positionen, die dem gebenenem Typ entsprechen innerhalb des Spielfelds und lässt den Offset außen vor.
      * @clazz Typ des Actors, nach dem gesucht werden soll oder null, wenn nach leeren Felder gesucht werden soll
+     * @umgekehrt true, wenn das Gegenteil des Kriteriums gefunden werden soll
      * @return Liste mit Positionen, die dem Kriterium entsprechen
      */
-    public List<Position> felderSuchen(Class clazz) {
+    public List<Position> felderSuchen(Class clazz, boolean umgekehrt) {
         boolean nachFreienFeldernSuchen = clazz == null;
         List<Position> felder = new ArrayList<Position>();
         for (int x = 0; x < getWidth(); x++) {
             for (int y = 0; y < getHeight(); y++) {
                 List<Actor> actors = getObjectsAtMitOffset(x, y, clazz);
                 boolean keinActorAufFeld = actors.size() == 0;
-                if ((nachFreienFeldernSuchen && keinActorAufFeld) || (!nachFreienFeldernSuchen && !keinActorAufFeld)) { 
+                if ((nachFreienFeldernSuchen && keinActorAufFeld) || (!nachFreienFeldernSuchen && !keinActorAufFeld)) {
+                    if (!umgekehrt) {
+                        felder.add(new Position(x, y));
+                    }
+                } else if (umgekehrt) {
                     felder.add(new Position(x, y));
                 }
             }

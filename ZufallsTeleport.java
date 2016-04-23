@@ -11,8 +11,8 @@ public class ZufallsTeleport extends PowerUpEffekt {
     
     public void aktiviert() {
         OffsetSpielfeld welt = getSpieler().getWorld();
-        Position zufaelligesLeeresFeld = Zufall.getZufallsElement(welt.leereFelderSuchen());
-        Position ohneOffset = welt.ohneOffset(zufaelligesLeeresFeld);
+        Position zufaelligesNichtWandFeld = Zufall.getZufallsElement(welt.felderSuchen(Wand.class, true));
+        Position ohneOffset = welt.ohneOffset(zufaelligesNichtWandFeld);
         getSpieler().setLocation(ohneOffset.getX(), ohneOffset.getY());
     }
 }
