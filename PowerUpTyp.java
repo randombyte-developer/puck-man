@@ -1,7 +1,7 @@
 import greenfoot.*;
 
 public enum PowerUpTyp   {
-    SPEED, RANDOM_TELEPORT;
+    SPEED, RANDOM_TELEPORT, POINTS_BACK;
     
     /**
      * @return Ein zufällig ausgewählter PowerUpTyp

@@ -16,6 +16,8 @@ public class PowerUpEffekt {
                 return new SpeedEffekt(spieler);
             case RANDOM_TELEPORT:
                 return new ZufallsTeleport(spieler);
+            case POINTS_BACK:
+                return new PointsBack(spieler);
             default:
                 System.out.println("PowerUp hat keinen Effekt: " + typ);
                 return null;

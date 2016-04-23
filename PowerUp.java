@@ -20,6 +20,7 @@ public class PowerUp extends Figur {
         switch (typ) {
             case SPEED: return "bluej-icon.png";
             case RANDOM_TELEPORT: return "gold-ball.png";
+            case POINTS_BACK: return "ppl2.png";
             default: return "gold-ball.png";
         }
     }
