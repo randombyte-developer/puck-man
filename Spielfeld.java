@@ -69,7 +69,7 @@ public class Spielfeld extends World {
     public boolean isGestoppt() {
         return gestoppt;
     }
-
+    
     /**
      * Entfernt alle Objekte auf dem Spielfeld.
      */
