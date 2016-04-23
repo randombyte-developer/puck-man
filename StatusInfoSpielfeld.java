@@ -18,7 +18,7 @@ public class StatusInfoSpielfeld extends OffsetSpielfeld {
         super(breite, hoehe, feldgroesse, 0, 1); //Eine Reihe oben hinzugefügt
         this.powerUpVorkommen = powerUpVorkommen;
         einlesen(mapString);
-        addObjectOhneOffset(punkteText, 1, 0);
+        addObjectOhneOffset(punkteText, 2, 0);
     }
     
     /**
