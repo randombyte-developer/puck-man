@@ -36,13 +36,6 @@ public class StatusInfoSpielfeld extends OffsetSpielfeld {
         addObjectOhneOffset(powerUpDisplay, 4, 0);
     }
     
-    /**
-     * @return Die Anzahl der noch auf dem Spielfeld vorhandenen Punkte
-     */
-    private int getPunkteAufSpielfeld() {
-        return getObjects(Punkt.class).size();
-    }
-    
     public void act() {
         if (isGestoppt()) return;
         super.act();

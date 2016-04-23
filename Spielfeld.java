@@ -76,6 +76,13 @@ public class Spielfeld extends World {
     public void spielfeldLeeren() {
         removeObjects(getObjects(null));
     }
+        
+    /**
+     * @return Die Anzahl der noch auf dem Spielfeld vorhandenen Punkte
+     */
+    public int getPunkteAufSpielfeld() {
+        return getObjects(Punkt.class).size();
+    }
 
     /**
      * Prüft, ob die gegebene Position auf dem Spielfeld ist.
