@@ -78,8 +78,8 @@ public class Figur extends Actor {
     /**
      * Um Methoden des Spielfeldes einfach benutzen zu können.
      */
-    public Spielfeld getWorld() {
-        return getWorldOfType(Spielfeld.class);
+    public StatusInfoSpielfeld getWorld() {
+        return getWorldOfType(StatusInfoSpielfeld.class);
     }
     
     /**

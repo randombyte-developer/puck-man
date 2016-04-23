@@ -8,8 +8,10 @@ import java.awt.Color;
  */
 public class StatusInfoSpielfeld extends OffsetSpielfeld {
     
-    private Text punkteText = new Text("", 30, Color.BLACK, Color.WHITE);
     private double powerUpVorkommen;
+    
+    private Text punkteText = new Text("", 30, Color.BLACK, Color.WHITE);
+    private PowerUp powerUpDisplay = null;
     
     /**
      * @powerUpVorkommen Zwischen 0 und 1, wie wahrscheinlich es ist, dass in einer act-Methode ein PowerUp gespawnt wird
@@ -19,6 +21,19 @@ public class StatusInfoSpielfeld extends OffsetSpielfeld {
         this.powerUpVorkommen = powerUpVorkommen;
         einlesen(mapString);
         addObjectOhneOffset(punkteText, 2, 0);
+    }
+    
+    /**
+     * Zeigt ein PowerUp vom gegebenen Typ oben an.
+     * @typ Der neue PowerUpTyp, der angezeigt werden soll oder null, wenn kein PowerUp angezeigt werden soll
+     */
+    public void setPowerUpDisplay(PowerUpTyp typ) {
+        if (powerUpDisplay != null) { //Altes entfernen
+            removeObject(powerUpDisplay);
+        }
+        if (typ == null) return;
+        powerUpDisplay = new PowerUp(typ);
+        addObjectOhneOffset(powerUpDisplay, 4, 0);
     }
     
     /**
@@ -32,7 +47,7 @@ public class StatusInfoSpielfeld extends OffsetSpielfeld {
     public void act() {
         super.act();
         punkteText.setText(getPunkteAufSpielfeld() + " Punkte");
-        if (Greenfoot.getRandomNumber(1000) == powerUpVorkommen * 1000) { //Zufälliger Zeitpunkt
+        if (Zufall.getZufallsBoolean(powerUpVorkommen)) { //Zufälliger Zeitpunkt
             List<Position> leereFelder = leereFelderSuchen();
             if (leereFelder.size() > 0) {
                 Position leeresFeld = leereFelder.get(Greenfoot.getRandomNumber(leereFelder.size()));

@@ -2,8 +2,8 @@ import greenfoot.*;
 
 public class Spieler extends Figur {
     
-    private PowerUpTyp gespeichertesPowerUp = null;
-    private PowerUpEffekt aktuellerEffekt = null;
+    private PowerUpTyp gespeicherterPowerUpTyp = null; //Wenn gespeichert, kann mit Leertaste freigegeben werden
+    private PowerUpEffekt aktuellerEffekt = null; //Der mit Leertaste freigegebene Effekt
     
     public Spieler() {
         super("spieler.png", 14); //Bild und Geschwindigkeit
@@ -16,7 +16,11 @@ public class Spieler extends Figur {
         powerUpAufnehmen();
         if (aktuellerEffekt != null) {
             aktuellerEffekt.act();
+            if (!aktuellerEffekt.isAktiv()) { //Ausgelaufenen Effekt entfernen
+                aktuellerEffekt = null;
+            }
         }
+        powerUpFreigeben();
     }
     
     public void actBewegen() {
@@ -52,7 +56,22 @@ public class Spieler extends Figur {
         Actor actor = getOneIntersectingObject(PowerUp.class);
         if (actor == null) return; //Kein PowerUp am Platz
         PowerUp powerUp = (PowerUp) actor; //Casten ist sicher, da nur Actor vom Typ PowerUp zurückgegeben werden
-        aktuellerEffekt= PowerUpEffekt.vonTypErstellen(powerUp.getTyp(), this);
+        gespeicherterPowerUpTyp = powerUp.getTyp();
+        getWorld().setPowerUpDisplay(gespeicherterPowerUpTyp);
         removeTouching(PowerUp.class);
+    }
+    
+    /**
+     * Gibt, wenn die Leertase gedrückt wird, das gespeicherte PowerUp frei und führt den Effekt aus.
+     */
+    private void powerUpFreigeben() {
+        if (Greenfoot.isKeyDown("space") && gespeicherterPowerUpTyp != null) {
+            if (aktuellerEffekt != null) { //Ein Effekt ist noch aktiv
+                aktuellerEffekt.deaktivieren();
+            }
+            aktuellerEffekt= PowerUpEffekt.vonTypErstellen(gespeicherterPowerUpTyp, this); //Neuer Effekt, der beim nächsten act() aktiviert wird
+            gespeicherterPowerUpTyp = null;
+            getWorld().setPowerUpDisplay(null);
+        }
     }
 }

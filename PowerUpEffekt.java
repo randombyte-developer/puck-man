@@ -30,6 +30,14 @@ public class PowerUpEffekt {
     }
     
     /**
+     * Deaktiviert den Effekt manuell vorzeitig.
+     */
+    public void deaktivieren() {
+        aktiv = false;
+        deaktiviert();
+    }
+    
+    /**
      * @return Der gespeicherte Spieler von der Erstellung des Effektes
      */
     public Spieler getSpieler() {
