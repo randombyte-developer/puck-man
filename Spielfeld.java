@@ -119,9 +119,9 @@ public class Spielfeld extends World {
     private void endNachrichtZeigen(String nachricht) {
         setGestoppt(true);
         showText(nachricht, getWidth() / 2, getHeight() / 2);
-        Greenfoot.delay(60);
+        Greenfoot.delay(50);
         spielfeldLeeren();
-        Greenfoot.delay(90);
+        Greenfoot.delay(120);
         Greenfoot.setWorld(new LevelAuswahl());
     }
     
