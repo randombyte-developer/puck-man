@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class Spielfeld extends World {
 
-    private long acts = 0;
-
     public Spielfeld(int breite, int hoehe, int feldgroesse) {
         super(breite, hoehe, feldgroesse, false); //false -> nicht 'bounded'
 
@@ -60,8 +58,37 @@ public class Spielfeld extends World {
     /**
      * Entfernt alle Objekte auf dem Spielfeld.
      */
-    private void spielfeldLeeren() {
+    public void spielfeldLeeren() {
         removeObjects(getObjects(null));
+    }
+    
+    
+    /**
+     * @return Liste mit Positionen, wo leere Felder sind
+     */
+    public List<Position> leereFelderSuchen() {
+        return felderSuchen(null);
+    }
+
+    /**
+     * Sucht nach Positionen, die dem gebenenem Typ entsprechen.
+     * @clazz Typ des Actors, nach dem gesucht werden soll oder null, wenn nach leeren Felder gesucht werden soll
+     * @return Liste mit Positionen, die dem Kriterium entsprechen
+     */
+    public List<Position> felderSuchen(Class clazz) {
+        boolean nachFreienFeldernSuchen = clazz == null;
+        List<Position> felder = new ArrayList<Position>();
+        for (int x = 0; x < getWidth(); x++) {
+            for (int y = 0; y < getHeight(); y++) {
+                List<Actor> actors = getObjectsAt(x, y, clazz);
+                boolean keinActorAufFeld = actors.size() == 0;
+                if ((nachFreienFeldernSuchen && keinActorAufFeld) || (!nachFreienFeldernSuchen && !keinActorAufFeld)) { 
+                    felder.add(new Position(x, y));
+                }
+            }
+        }
+
+        return felder;
     }
 
     /**
