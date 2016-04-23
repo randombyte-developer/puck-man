@@ -1,4 +1,5 @@
 import greenfoot.*;
+import java.util.List;
 
 public class Zufall {
     /**
@@ -6,5 +7,12 @@ public class Zufall {
      */
     public static boolean getZufallsBoolean(double wahrscheinlichkeit) {
         return Greenfoot.getRandomNumber(1000) <= wahrscheinlichkeit * 1000;
+    }
+    
+    /**
+     * @return Ein zufälliges Element der gegebenen Liste
+     */
+    public static <T> T getZufallsElement(List<T> liste) {
+        return liste.get(Greenfoot.getRandomNumber(liste.size()));
     }
 }
