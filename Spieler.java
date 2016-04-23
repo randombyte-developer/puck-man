@@ -10,6 +10,7 @@ public class Spieler extends Figur {
     }
     
     public void act() {
+        if (getWorld().isGestoppt()) return;
         super.act();
         drehen(); //Drehen hier, damit sofortige Reaktion auf Nutzereingaben und nicht erst jede 10. act-Methode
         gegnerFressen();

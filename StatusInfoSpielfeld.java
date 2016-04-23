@@ -44,7 +44,9 @@ public class StatusInfoSpielfeld extends OffsetSpielfeld {
     }
     
     public void act() {
+        if (isGestoppt()) return;
         super.act();
+        
         punkteText.setText(getPunkteAufSpielfeld() + " Punkte");
         if (Zufall.getZufallsBoolean(powerUpVorkommen)) { //Zufälliger Zeitpunkt
             List<Position> leereFelder = leereFelderSuchen();

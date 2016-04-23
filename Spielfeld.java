@@ -55,12 +55,19 @@ public class Spielfeld extends World {
             }
         }
     }
-
+    
     /**
      * Verhindert die Ausführung der act Methode.
      */
     public void setGestoppt(boolean gestoppt) {
         this.gestoppt = gestoppt;
+    }
+    
+    /**
+     * @return Ob das Spiel zur Zeit gestoppt ist
+     */
+    public boolean isGestoppt() {
+        return gestoppt;
     }
 
     /**

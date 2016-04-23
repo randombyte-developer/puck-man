@@ -54,6 +54,7 @@ public class Figur extends Actor {
      * Zählt die 'actAnzahl' hoch. Ruft 'actBewegen()' der Geschwindigkeit entsprechend auf.
      */
     public void act() {
+        if (getWorld().isGestoppt()) return;
         if (geschwindigkeit < 0) return;
         if (++actAnzahl >= geschwindigkeit) {
             actBewegen(); //Genug act-Methoden gewartet -> einmal bewegen
