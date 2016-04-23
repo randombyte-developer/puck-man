@@ -10,7 +10,7 @@ public class StatusInfoSpielfeld extends OffsetSpielfeld {
     
     private double powerUpVorkommen;
     
-    private Text punkteText = new Text("", 30, Color.BLACK, Color.WHITE);
+    private Text punkteText = new Text("", 30, Color.BLACK, Color.LIGHT_GRAY);
     private PowerUp powerUpDisplay = null;
     
     /**
@@ -19,8 +19,16 @@ public class StatusInfoSpielfeld extends OffsetSpielfeld {
     public StatusInfoSpielfeld(int breite, int hoehe, int feldgroesse, String mapString, double powerUpVorkommen) {
         super(breite, hoehe, feldgroesse, 0, 1); //Eine Reihe oben hinzugefügt
         this.powerUpVorkommen = powerUpVorkommen;
+        setHintergrundFarbe(Color.LIGHT_GRAY);
         einlesen(mapString);
         addObjectOhneOffset(punkteText, 2, 0);
+    }
+    
+    private void setHintergrundFarbe(Color color) {
+        GreenfootImage hintergrund = new GreenfootImage(1, 1); //Nur ein Pixel groß, weil Greenfoot den gegebenen Hintergrund so oft wiederholt, bis alles ausgefüllt ist
+        hintergrund.setColor(color);
+        hintergrund.fill();
+        setBackground(hintergrund);
     }
     
     /**

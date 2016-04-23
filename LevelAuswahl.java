@@ -8,6 +8,11 @@ public class LevelAuswahl extends World {
     public LevelAuswahl() {
         super(10, 5, 110);
 
+        GreenfootImage hintergrund = new GreenfootImage(1, 1); //Nur ein Pixel groß, weil Greenfoot den gegebenen Hintergrund so oft wiederholt, bis alles ausgefüllt ist
+        hintergrund.setColor(Color.LIGHT_GRAY);
+        hintergrund.fill();
+        setBackground(hintergrund);
+        
         levelAuflisten();
     }
 
@@ -22,7 +27,7 @@ public class LevelAuswahl extends World {
                 if (spielfelder.size() - 1 < nummer) { //Keine weiteren Spielfelder mehr zum auflisten da
                     return;
                 }
-                addObject(new TextButton(String.valueOf(nummer + 1), 70, Color.WHITE, Color.YELLOW, new TextButton.KlickCallback() {
+                addObject(new TextButton(String.valueOf(nummer + 1), 70, Color.LIGHT_GRAY, Color.YELLOW, new TextButton.KlickCallback() {
                     public void klick() {
                         Greenfoot.setWorld(spielfelder.get(nummer));
                     }
