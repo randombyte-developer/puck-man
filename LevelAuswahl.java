@@ -20,6 +20,9 @@ public class LevelAuswahl extends World {
         List<Spielfeld> spielfelder = new ArrayList<Spielfeld>();
         spielfelder.add(new Map1());
         spielfelder.add(new Map2());
+        spielfelder.add(new Map3());
+        spielfelder.add(new Map4());
+        spielfelder.add(new Map5());
 
         for (int y = 0; y < getHeight(); y++) {
             for (int x = 0; x < getWidth(); x++) {

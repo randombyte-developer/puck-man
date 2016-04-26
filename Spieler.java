@@ -6,7 +6,7 @@ public class Spieler extends Figur {
     private PowerUpEffekt aktuellerEffekt = null; //Der mit Leertaste freigegebene Effekt
     
     public Spieler() {
-        super("spieler.png", 14); //Bild und Geschwindigkeit
+        super("spieler.png", 12); //Bild und Geschwindigkeit
     }
     
     public void act() {
