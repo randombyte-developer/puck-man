@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Spielfeld extends World {
 
-    private boolean gestoppt = false;
+    private boolean spielGestartet = false; //Wird ein einziges mal auf true gesetzt, wenn der Spieler sich das erste mal bewegt
+    private boolean gestoppt = true;
     
     public Spielfeld(int breite, int hoehe, int feldgroesse) {
         super(breite, hoehe, feldgroesse, false); //false -> nicht 'bounded'
@@ -76,6 +77,23 @@ public class Spielfeld extends World {
      */
     public boolean isGestoppt() {
         return gestoppt;
+    }
+    
+    /**
+     * Startet das Spiel.
+     */
+    public void spielStarten() {
+        if (!spielGestartet) {
+            this.spielGestartet = true;
+            setGestoppt(false);
+        }
+    }
+    
+    /**
+     * @return Ob das Spiel gestartet ist
+     */
+    public boolean isSpielGestartet() {
+        return spielGestartet;
     }
     
     /**

@@ -6,10 +6,15 @@ public class Spieler extends Figur {
     private PowerUpEffekt aktuellerEffekt = null; //Der mit Leertaste freigegebene Effekt
     
     public Spieler() {
-        super("spieler.png", 14); //Bild und Geschwindigkeit
+        super("spieler.png", 12); //Bild und Geschwindigkeit
     }
     
     public void act() {
+        if (!getWorld().isSpielGestartet()) {
+            if (getGedrueckteRichtung() != -1) {
+                getWorld().spielStarten();
+            }
+        }
         if (getWorld().isGestoppt()) return;
         super.act();
         drehen(); //Drehen hier, damit sofortige Reaktion auf Nutzereingaben und nicht erst jede 10. act-Methode
@@ -29,21 +34,35 @@ public class Spieler extends Figur {
     }
     
     /**
-     * Fragt Tastatur ab und ändert dementsprechend die Richtung des Spielers.
+     * Fragt Tastatur ab.
+     * @return Gedrückte Richtung oder -1, wenn keine Richtung gedrückt ist
      */
-    private void drehen() {
-        int neueRichtung = -1;
+    private int getGedrueckteRichtung() {
+        int richtung = -1;
         if (Greenfoot.isKeyDown("right")) {
-            neueRichtung = 0;
+            richtung = 0;
         } else if (Greenfoot.isKeyDown("down")) {
-            neueRichtung = 1;
+            richtung = 1;
         }  else if (Greenfoot.isKeyDown("left")) {
-            neueRichtung = 2;
+            richtung = 2;
         } else if (Greenfoot.isKeyDown("up")) {
-            neueRichtung = 3;
+            richtung = 3;
         }
         
+        return richtung;
+    }
+    
+    /**
+     *  Ändert die Richtung des Spielers, falls eine Taste gedrückt ist.
+     */
+    private void drehen() {
+        int neueRichtung = getGedrueckteRichtung();
+        
         if (neueRichtung == -1) return; //Keine Richtungsänderung
+        
+        if (!getWorld().isSpielGestartet()) {
+            getWorld().spielStarten();
+        }
         
         if (isRichtungMoeglich(neueRichtung)) { //Wenn neue Richtung nicht sinnvoll ist und somit der Spieler stehen bleiben würde, nicht drehen
             setRichtung(neueRichtung);
