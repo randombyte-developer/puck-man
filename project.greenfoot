@@ -1,7 +1,4 @@
 #Greenfoot project file
-=\=\=\=\=\=\=
-<<<<<<<=HEAD
->>>>>>>=b91bdc881bfd5438e72cac2e29323dc45d402d03
 class.Figur.superclass=greenfoot.Actor
 class.Gegner.image=gegner.png
 class.Gegner.superclass=Figur
@@ -195,8 +192,8 @@ editor.fx.0.height=700
 editor.fx.0.width=700
 editor.fx.0.x=0
 editor.fx.0.y=0
-editor.swing.0.height=698
-editor.swing.0.width=691
+editor.swing.0.height=0
+editor.swing.0.width=0
 editor.swing.0.x=65
 editor.swing.0.y=24
 editor.swing.1.height=700
