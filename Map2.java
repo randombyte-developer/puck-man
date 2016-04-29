@@ -1,6 +1,6 @@
 public class Map2 extends StatusInfoSpielfeld {
     public Map2() {
-        super(30, 20, 30,
+        super(30, 20, 38,
             "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX;" +
             "XGOOOOOOOOOOOOOOOOOOOOOOOOOOGX;" +
             "XOXXXXXXOXXXXOXOXXXOXOXXOXXXOX;" +
