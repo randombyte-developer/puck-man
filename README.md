@@ -1,6 +1,6 @@
 #PuckMan
 
-A school project in Java with [Greenfoot](greenfoot.org).
+A school project in Java with [Greenfoot](www.greenfoot.org).
 
 German 'how to play':
 
