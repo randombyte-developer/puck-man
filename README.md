@@ -9,6 +9,8 @@ German 'how to play':
 - Die Gegner durch Berühren fressen
 - Die Gegner sammeln die Punkte auf dem Spielfeld
 - Anzahl noch verbleibender Punkte wird oben am Spielfeldrand angezeigt
+- Das Spiel startet, wenn man den Spieler in einer Richtung bewegt
+- Das aktuell gestartete Level kann mit Escape verlassen werden, um zur Levelauswahl zurückzukehren
 
 ###Spielende:
 - Der Spieler verliert, wenn er 0 Punkte hat, und somit kein Punkt mehr auf dem Spielfeld ist
