@@ -8,6 +8,9 @@ import java.awt.Color;
  */
 public class StatusInfoSpielfeld extends OffsetSpielfeld {
     
+    private static final int POWER_UP_DISPLAY_X = 5;
+    private static final int PUNKTE_DISPLAY_X = 2;
+    
     private double powerUpVorkommen;
     
     private Text punkteText = new Text("", 30, Color.BLACK, Color.LIGHT_GRAY);
@@ -21,7 +24,7 @@ public class StatusInfoSpielfeld extends OffsetSpielfeld {
         this.powerUpVorkommen = powerUpVorkommen;
         setHintergrundFarbe(Color.LIGHT_GRAY);
         einlesen(mapString);
-        addObjectOhneOffset(punkteText, 2, 0);
+        addObjectOhneOffset(punkteText, PUNKTE_DISPLAY_X, 0);
     }
     
     private void setHintergrundFarbe(Color color) {
@@ -41,7 +44,7 @@ public class StatusInfoSpielfeld extends OffsetSpielfeld {
         }
         if (typ == null) return;
         powerUpDisplay = new PowerUp(typ);
-        addObjectOhneOffset(powerUpDisplay, 4, 0);
+        addObjectOhneOffset(powerUpDisplay, POWER_UP_DISPLAY_X, 0);
     }
     
     public void act() {
