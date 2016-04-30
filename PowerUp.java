@@ -16,6 +16,9 @@ public class PowerUp extends Figur {
         return typ;
     }
     
+    /**
+     * @return Pfad zu dem Bild, welches zu dem gegebenem Typ gehört
+     */
     private static String getBildPfadFuerTyp(PowerUpTyp typ) {
         switch (typ) {
             case SPEED: return "bluej-icon.png";
