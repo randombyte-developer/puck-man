@@ -8,11 +8,7 @@ public class Start extends World {
     
     public Start() {
         super(5, 3, 130);
-        
-        GreenfootImage hintergrund = new GreenfootImage(1, 1); //Nur ein Pixel groß, weil Greenfoot den gegebenen Hintergrund so oft wiederholt, bis alles ausgefüllt ist
-        hintergrund.setColor(Color.LIGHT_GRAY);
-        hintergrund.fill();
-        setBackground(hintergrund);
+        Spielfeld.setHintergrundFarbe(this, Color.LIGHT_GRAY);
         
         addObject(new Text("PuckMan", 90, Color.GREEN, Color.LIGHT_GRAY), 2, 0);
         

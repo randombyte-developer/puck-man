@@ -69,11 +69,11 @@ public class Spielfeld extends World {
     /**
      * Ändert die Hintergrundfarbe auf die gegebene Farbe.
      */
-    protected void setHintergrundFarbe(Color color) {
+    public static void setHintergrundFarbe(World world, Color color) {
         GreenfootImage hintergrund = new GreenfootImage(1, 1); //Nur ein Pixel groß, weil Greenfoot den gegebenen Hintergrund so oft wiederholt, bis alles ausgefüllt ist
         hintergrund.setColor(color);
         hintergrund.fill();
-        setBackground(hintergrund);
+        world.setBackground(hintergrund);
     }
     
     /**

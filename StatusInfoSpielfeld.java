@@ -22,7 +22,7 @@ public class StatusInfoSpielfeld extends OffsetSpielfeld {
     public StatusInfoSpielfeld(int breite, int hoehe, int feldgroesse, String mapString, double powerUpVorkommen) {
         super(breite, hoehe, feldgroesse, 0, 1); //Eine Reihe oben hinzugefügt
         this.powerUpVorkommen = powerUpVorkommen;
-        setHintergrundFarbe(Color.LIGHT_GRAY);
+        Spielfeld.setHintergrundFarbe(this, Color.LIGHT_GRAY);
         einlesen(mapString);
         addObjectOhneOffset(punkteText, PUNKTE_DISPLAY_X, 0);
     }
