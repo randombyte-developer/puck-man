@@ -1,6 +1,7 @@
 import greenfoot.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.awt.Color;
 
 public class Spielfeld extends World {
 
@@ -63,6 +64,16 @@ public class Spielfeld extends World {
         if (Greenfoot.isKeyDown("escape")) { //Level abbrechen
             Greenfoot.setWorld(new LevelAuswahl());
         }
+    }
+    
+    /**
+     * Ändert die Hintergrundfarbe auf die gegebene Farbe.
+     */
+    protected void setHintergrundFarbe(Color color) {
+        GreenfootImage hintergrund = new GreenfootImage(1, 1); //Nur ein Pixel groß, weil Greenfoot den gegebenen Hintergrund so oft wiederholt, bis alles ausgefüllt ist
+        hintergrund.setColor(color);
+        hintergrund.fill();
+        setBackground(hintergrund);
     }
     
     /**
