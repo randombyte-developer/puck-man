@@ -21,7 +21,7 @@ public class PowerUp extends Figur {
      */
     private static String getBildPfadFuerTyp(PowerUpTyp typ) {
         switch (typ) {
-            case SPEED: return "bluej-icon.png";
+            case SPEED: return "speed.png";
             case RANDOM_TELEPORT: return "randomTeleport.png";
             case POINTS_BACK: return "pointsBack.png";
             default: return "gold-ball.png";
