@@ -10,7 +10,7 @@ public class Start extends World {
         super(5, 3, 130);
         Spielfeld.setHintergrundFarbe(this, Color.LIGHT_GRAY);
         
-        addObject(new Text("PuckMan", 90, Color.GREEN, Color.LIGHT_GRAY), 2, 0);
+        addObject(new Text("PuckMan", 90, Color.ORANGE, Color.LIGHT_GRAY), 2, 0);
         
         addObject(new TextButton("Start", 70, Color.LIGHT_GRAY, Color.YELLOW, new TextButton.KlickCallback() {
             public void klick() {
