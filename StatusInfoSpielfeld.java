@@ -8,7 +8,7 @@ import java.awt.Color;
  */
 public class StatusInfoSpielfeld extends OffsetSpielfeld {
     
-    private static final int POWER_UP_DISPLAY_X = 5;
+    private static final int POWER_UP_DISPLAY_X = 6;
     private static final int PUNKTE_DISPLAY_X = 2;
     
     private double powerUpVorkommen;
